@@ -12,34 +12,41 @@ struct LoginView: View {
     @State var password = ""
     
     var body: some View {
-        VStack {
-            // Header
-            HeaderView()
-            
-            // Login Form
-            Form {
-                TextField("Email", text: $email)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                SecureField("Email", text: $password)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+        NavigationView {
+            VStack {
+                // Header
+                HeaderView()
                 
-                Button {
-                    // attempt login
-                } label: {
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 10)
-                            .foregroundStyle(Color.blue)
-                        
-                        Text("Login")
-                            .foregroundStyle(Color.white)
-                            .bold()
+                // Login Form
+                Form {
+                    TextField("Email", text: $email)
+                        .textFieldStyle(DefaultTextFieldStyle())
+                    SecureField("Password", text: $password)
+                        .textFieldStyle(DefaultTextFieldStyle())
+                    
+                    Button {
+                        // attempt login
+                    } label: {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 10)
+                                .foregroundStyle(Color.blue)
+                            
+                            Text("Login")
+                                .foregroundStyle(Color.white)
+                                .bold()
+                        }
+                        .padding()
                     }
                 }
+                
+                // Registration
+                VStack {
+                    Text("New around here?")
+                    NavigationLink("Create an account", destination: RegisterView())
+                }
+                
+                Spacer()
             }
-            
-            // Registration
-            
-            Spacer()
         }
     }
 }
